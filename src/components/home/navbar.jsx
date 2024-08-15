@@ -1,7 +1,6 @@
 'use client'
 import React from 'react';
-
-import UserMenu from '@/components/UserMenu';
+import UserMenu from '../userMenu'
 import { FaArrowLeft } from 'react-icons/fa';
 
 const Navbar = () => {
