@@ -1,13 +1,17 @@
 import type { Config } from "tailwindcss"
 
-const config = {
+const config: Config = {
   darkMode: ["class"],
   content: [
     './pages/**/*.{ts,tsx}',
     './components/**/*.{ts,tsx}',
     './app/**/*.{ts,tsx}',
     './src/**/*.{ts,tsx}',
-	],
+    './src/**/*.{js,jsx}',
+    './app/**/*.{js,jsx}',
+    './pages/**/*.{js,jsx}',
+    './components/**/*.{js,jsx}',
+  ],
   prefix: "",
   theme: {
     container: {
@@ -18,6 +22,13 @@ const config = {
       },
     },
     extend: {
+      maxWidth: {
+        "8xl": "1408px"
+      },
+      fontFamily: {
+        poppins: ['Poppins', 'sans-serif'],
+        pacifico: ['Pacifico', 'cursive'],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -58,6 +69,7 @@ const config = {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      
       keyframes: {
         "accordion-down": {
           from: { height: "0" },
@@ -67,14 +79,20 @@ const config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        spin: {
+          '0%': { transform: 'rotate(0deg)' },
+          '100%': { transform: 'rotate(360deg)' },
+        }
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "spin": 'spin 1s linear infinite',
+  
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
-} satisfies Config
+  plugins: [require("tailwindcss-animate"), require('@tailwindcss/typography')],
+}
 
 export default config

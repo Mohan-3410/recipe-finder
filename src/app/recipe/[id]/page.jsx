@@ -1,0 +1,71 @@
+'use client';
+
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+
+export default function RecipeDetail({ params }) {
+  const { id } = params;
+  const [recipe, setRecipe] = useState(null);
+
+  useEffect(() => {
+    if (id) {
+      axios
+        .get(`https://api.spoonacular.com/recipes/${id}/information`, {
+          params: {
+            apiKey: process.env.NEXT_PUBLIC_SPOONACULAR_API_KEY,
+          },
+        })
+        .then((response) => {
+          setRecipe(response.data);
+        });
+    }
+  }, [id]);
+
+  if (!recipe) return <div>Loading...</div>;
+
+  return (
+    <div className="min-h-screen bg-gray-100">
+      <header className="bg-white shadow">
+        <div className="container mx-auto px-6 py-4">
+          <h1 className="text-3xl font-bold text-gray-800">Recipe App</h1>
+        </div>
+      </header>
+
+      <main className="container mx-auto px-6 py-8">
+        <h1 className="text-4xl font-bold text-gray-800 mb-4">{recipe.title}</h1>
+        <div className="flex flex-col md:flex-row md:space-x-6">
+          <img
+            src={recipe.image}
+            alt={recipe.title}
+            className="w-full md:w-1/2 h-96 object-cover rounded-lg mb-4 md:mb-0"
+          />
+          <div className="w-full md:w-1/2">
+            <div className="mb-6">
+              <h2 className="text-2xl font-semibold text-gray-800">Ingredients</h2>
+              <ul className="list-disc list-inside text-gray-700 mt-2">
+                {recipe.extendedIngredients.map((ingredient) => (
+                  <li key={ingredient.id} className="mb-1">
+                    {ingredient.original}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h2 className="text-2xl font-semibold text-gray-800">Instructions</h2>
+              <div
+                className="text-gray-700 mt-2"
+                dangerouslySetInnerHTML={{ __html: recipe.instructions }}
+              />
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <footer className="bg-white shadow mt-8">
+        <div className="container mx-auto px-6 py-4">
+          <p className="text-gray-600">&copy; 2024 Recipe App. All rights reserved.</p>
+        </div>
+      </footer>
+    </div>
+  );
+}

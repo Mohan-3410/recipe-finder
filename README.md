@@ -34,4 +34,23 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-"# recipe-finder" 
+# Recipe App
+
+This is a web application that allows users to search for recipes, view details about each recipe, and save their favorite recipes. The application is built using Next.js and styled with Tailwind CSS.
+
+## Features
+
+- Recipe Search: Search for recipes by ingredient or dish name.
+- Recipe List: Display a list of recipes based on the search query.
+- Recipe Details: View detailed information about a recipe, including ingredients, cooking instructions, and a larger image.
+- Favorites: Add or remove recipes from the favorites list.
+- Responsive Design: Works well on desktop, tablet, and mobile devices.
+
+## Setup Instructions
+
+1. **Clone the repository**:
+
+   ```bash
+   git clone https://github.com/your-username/recipe-app.git
+   cd recipe-app
+ 
