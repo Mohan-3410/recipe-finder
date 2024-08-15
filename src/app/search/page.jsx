@@ -2,10 +2,8 @@
 import { useState } from 'react';
 import axios from 'axios';
 import Link from 'next/link';
-import { ThemeSwitcher } from '@/utils/themeSwitcher';
 import Loader from "@/components/loader";
-import Navbar from '@/components/home/navbar';
-import Footer from '@/components/home/footer';
+
 
 export default function Search() {
   const [query, setQuery] = useState('');
@@ -33,8 +31,7 @@ export default function Search() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-background text-foreground">
-      <Navbar />
+    
 
       <main className="flex-grow container mx-auto px-6 py-8">
         <section className="mb-8">
@@ -82,7 +79,6 @@ export default function Search() {
         </section>
       </main>
 
-      <Footer />
-    </div>
+     
   );
 }

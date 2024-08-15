@@ -24,12 +24,7 @@ export default function RecipeDetail({ params }) {
   if (!recipe) return <div>Loading...</div>;
 
   return (
-    <div className="min-h-screen bg-gray-100">
-      <header className="bg-white shadow">
-        <div className="container mx-auto px-6 py-4">
-          <h1 className="text-3xl font-bold text-gray-800">Recipe App</h1>
-        </div>
-      </header>
+    
 
       <main className="container mx-auto px-6 py-8">
         <h1 className="text-4xl font-bold text-gray-800 mb-4">{recipe.title}</h1>
@@ -60,12 +55,5 @@ export default function RecipeDetail({ params }) {
           </div>
         </div>
       </main>
-
-      <footer className="bg-white shadow mt-8">
-        <div className="container mx-auto px-6 py-4">
-          <p className="text-gray-600">&copy; 2024 Recipe App. All rights reserved.</p>
-        </div>
-      </footer>
-    </div>
   );
 }
