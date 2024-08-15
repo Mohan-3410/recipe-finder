@@ -21,6 +21,9 @@ export function ThemeSwitcher() {
 
   return (
     <div className="flex items-center justify-between w-full">
+      <label className="Label" htmlFor="dark-mode">
+        Dark mode
+      </label>
       <Switch checked={theme === "dark"} onCheckedChange={handleThemeChange} />
     </div>
   );

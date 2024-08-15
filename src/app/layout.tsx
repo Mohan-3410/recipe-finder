@@ -3,12 +3,15 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { StoreProvider } from "@/redux/StoreProvider";
 const inter = Inter({ subsets: ["latin"] });
-import Navbar from "@/components/home/navbar"
+import Navbar from "@/components/home/navbar";
 import { Providers as ThemeProvider } from "./themePovider";
+import {QueryProvider as QueryClientProvider} from "./queryClientProvider"
 export const metadata: Metadata = {
   title: "RecipeFinder",
-  description: "Recipe Finder is your ultimate online platform to search, discover, and save delicious recipes from around the world. Whether you're looking for appetizers, main courses, or desserts, Recipe Finder has got you covered. Our user-friendly interface and powerful search functionality make it easy to find recipes by ingredient or dish name. Explore various categories, view detailed recipe instructions, and create a personalized collection of your favorite recipes. Join Recipe Finder today and turn your culinary dreams into reality!",
+  description:
+    "Recipe Finder is your ultimate online platform to search, discover, and save delicious recipes from around the world. Whether you're looking for appetizers, main courses, or desserts, Recipe Finder has got you covered. Our user-friendly interface and powerful search functionality make it easy to find recipes by ingredient or dish name. Explore various categories, view detailed recipe instructions, and create a personalized collection of your favorite recipes. Join Recipe Finder today and turn your culinary dreams into reality!",
 };
+
 
 export default function RootLayout({
   children,
@@ -21,9 +24,10 @@ export default function RootLayout({
         <body className={inter.className}>
           {/* <Navbar/> */}
           <ThemeProvider>
-            {children}
+            <QueryClientProvider >
+              {children}
+            </QueryClientProvider>
           </ThemeProvider>
-          
         </body>
       </html>
     </StoreProvider>
