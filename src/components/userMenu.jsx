@@ -5,8 +5,9 @@ import { usePathname, useRouter } from 'next/navigation';
 import { ThemeSwitcher } from '@/utils/themeSwitcher';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuShortcut, DropdownMenuTrigger } from './ui/dropdown-menu';
 import { FaUserCircle } from 'react-icons/fa';
+import Image from 'next/image';
 
-const UserMenu = () => {
+const UserMenu = ({userData}) => {
     const router = useRouter();
     const path = usePathname();
     const handleFavouriteRecipe = () => {
@@ -14,14 +15,12 @@ const UserMenu = () => {
     };
 
     const handleLogOut = () => {
-        // Implement your logout functionality here
-        console.log('Logout');
+        window.location.href = `${process.env.NEXT_PUBLIC_API_URL}/logout`;
     };
-
     return (
         <DropdownMenu>
             <DropdownMenuTrigger>
-                <FaUserCircle size={32} />
+                {userData !== undefined ?   <Image src={userData?.avatar?.url || userData?.name.charat[0]} alt={"logo of " + userData?.name} width={36} height={36} className='rounded-full'/> :<FaUserCircle size={32} />  }
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-56">
                 <DropdownMenuLabel>

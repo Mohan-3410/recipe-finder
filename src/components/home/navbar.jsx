@@ -1,16 +1,30 @@
 'use client'
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import UserMenu from '../userMenu'
 import { FaArrowLeft } from 'react-icons/fa';
+import { axiosClient } from '@/utils/axiosClient';
 
 const Navbar = () => {
-
+    const [userData, setUserData] = useState();
 
     const handleBack = () => {
         if (typeof window !== 'undefined') {
             window.history.back();
         }
     };
+
+    const getUser = async () => {
+        try {
+            const response = await axiosClient.get(`${process.env.NEXT_PUBLIC_API_URL}/login/success`)
+            setUserData(response.result.user)
+        } catch (error) {
+            console.error(error)
+        }
+    }
+    
+    useEffect(() => {
+        getUser();
+    }, [])
 
     return (
         <nav className="bg-primary/90 text-primary-foreground h-20 flex items-center sticky top-0 z-50">
@@ -26,7 +40,7 @@ const Navbar = () => {
                     </a>
                 </div>
                 <div className="flex items-center gap-4">
-                    <UserMenu />
+                    <UserMenu userData={userData}/>
                 </div>
             </div>
         </nav>

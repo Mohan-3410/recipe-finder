@@ -2,11 +2,15 @@
 import React from 'react';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
+import Navbar from "@/components/home/navbar";
 
 const Recipe = () => {
   const router = useRouter();
   return (
-    <div className="relative h-screen bg-cover bg-no-repeat" style={{ backgroundImage: "url('/recipe.jpg')" }}>
+    <>
+    <Navbar />
+    <div className="relative h-screen bg-cover bg-no-repeat overflow-hiddenS" style={{ backgroundImage: "url('/recipe.jpg')" }}>
+      
       <div className="flex flex-col gap-4 md:gap-3 items-center justify-center h-full bg-black bg-opacity-70 text-center px-4 md:px-0">
         <h2 className="text-5xl md:text-6xl text-white mb-2 font-bold font-pacifico">
           Find Your <span className="text-yellow-400">Favorite</span> Recipes
@@ -19,6 +23,7 @@ const Recipe = () => {
         </Button>
       </div>
     </div>
+    </>
   );
 };
 

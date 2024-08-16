@@ -3,9 +3,11 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { StoreProvider } from "@/redux/StoreProvider";
 const inter = Inter({ subsets: ["latin"] });
-import Navbar from "@/components/home/navbar";
 import { Providers as ThemeProvider } from "./themePovider";
 import {QueryProvider as QueryClientProvider} from "./queryClientProvider"
+import Notifier from "@/components/notifier";
+
+
 export const metadata: Metadata = {
   title: "RecipeFinder",
   description:
@@ -23,6 +25,7 @@ export default function RootLayout({
       <html lang="en">
         <body className={inter.className}>
           {/* <Navbar/> */}
+          <Notifier />
           <ThemeProvider>
             <QueryClientProvider >
               {children}
