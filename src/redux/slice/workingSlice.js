@@ -1,9 +1,10 @@
 
+import { axiosClient } from "@/utils/axiosClient";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const getMyInfo = createAsyncThunk("user/getMyInfo", async () => {
     try { 
-        const data = await axiosClient.get('/user/getMyInfo');
+        const data = await axiosClient.get('/api/user/getMyInfo');
         return data.result;
     } catch (e) {
         return Promise.reject(e);

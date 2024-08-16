@@ -2,7 +2,7 @@ import axios from "axios"
 import { KEY_ACCESS_TOKEN, getItem, removeItem, setItem } from "./localStroageManager"
 import {store} from '../redux/store.js'
 import { setLoading, showToast } from "../redux/slice/workingSlice";
-
+import Cookies from 'js-cookie';
 
 const TOAST_FAILURE = 'toast_failure';
 
@@ -46,7 +46,7 @@ axiosClient.interceptors.response.use(async (response) => {
         
     }
     if (statusCode === 401) { 
-        const data = await axiosClient.get('/auth/refresh');
+        const data = await axiosClient.get('/api/auth/refresh');
         if (data.status === 'ok') {
             const accessToken = data.result.accessToken;
             setItem(KEY_ACCESS_TOKEN, accessToken);

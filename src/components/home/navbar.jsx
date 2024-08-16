@@ -1,31 +1,24 @@
 'use client'
-import React, { useEffect, useState } from 'react';
-import UserMenu from '../userMenu'
+import { getMyInfo } from '@/redux/slice/workingSlice';
+import { useEffect } from 'react';
 import { FaArrowLeft } from 'react-icons/fa';
-import { axiosClient } from '@/utils/axiosClient';
+import { useDispatch } from 'react-redux';
+import UserMenu from '../userMenu';
 
 const Navbar = () => {
-    const [userData, setUserData] = useState();
+    const dispatch = useDispatch()
 
     const handleBack = () => {
         if (typeof window !== 'undefined') {
             window.history.back();
         }
     };
-
-    const getUser = async () => {
-        try {
-            const response = await axiosClient.get(`${process.env.NEXT_PUBLIC_API_URL}/login/success`)
-            setUserData(response.result.user)
-        } catch (error) {
-            console.error(error)
+    useEffect(()=>{
+        const accessToken = localStorage.getItem('key_access_token');
+        if(accessToken){
+            dispatch(getMyInfo());
         }
-    }
-    
-    useEffect(() => {
-        getUser();
-    }, [])
-
+      },[])
     return (
         <nav className="bg-primary/90 text-primary-foreground h-20 flex items-center sticky top-0 z-50">
             <div className="container mx-auto flex justify-between items-center h-full px-6">
@@ -40,7 +33,7 @@ const Navbar = () => {
                     </a>
                 </div>
                 <div className="flex items-center gap-4">
-                    <UserMenu userData={userData}/>
+                    <UserMenu/>
                 </div>
             </div>
         </nav>

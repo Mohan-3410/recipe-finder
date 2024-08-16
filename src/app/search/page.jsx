@@ -5,7 +5,7 @@ import { useQuery } from '@tanstack/react-query';
 import useDebounce from '@/hooks/useDebounce';
 import Card from "@/components/card";
 import Loader from "@/components/loader";
-
+import WithAuth from '../../components/auth';
 const fetchRecipes = async ({ queryKey }) => {
   const [_, query] = queryKey;
   if (!query) return [];
@@ -18,7 +18,7 @@ const fetchRecipes = async ({ queryKey }) => {
   return response.data.results;
 };
 
-export default function Search() {
+const Search=()=> {
   const [query, setQuery] = useState('');
   const debouncedQuery = useDebounce(query, 1000);
   const { data: recipes = [], isLoading, isError, refetch } = useQuery({
@@ -36,7 +36,6 @@ export default function Search() {
       refetch();
     }
   };
-
   return (
     <main className="flex-grow container mx-auto px-6 py-8">
       <section className="mb-8">
@@ -79,3 +78,5 @@ export default function Search() {
     </main>
   );
 }
+
+export default WithAuth(Search)

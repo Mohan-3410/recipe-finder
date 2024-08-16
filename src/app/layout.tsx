@@ -6,6 +6,7 @@ const inter = Inter({ subsets: ["latin"] });
 import { Providers as ThemeProvider } from "./themePovider";
 import {QueryProvider as QueryClientProvider} from "./queryClientProvider"
 import Notifier from "@/components/notifier";
+import Navbar from "@/components/home/navbar";
 
 
 export const metadata: Metadata = {

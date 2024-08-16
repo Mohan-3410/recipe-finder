@@ -1,10 +1,12 @@
-'use client'
+'use client';
 import { axiosClient } from '@/utils/axiosClient';
 import { KEY_ACCESS_TOKEN, setItem } from '@/utils/localStroageManager';
+import Cookies from 'js-cookie';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { FaGoogle } from 'react-icons/fa';
+
 const images = [
     '/burger.jpg',  // Replace with the actual paths of your images
     '/icecream.jpeg',  // Replace with the actual paths of your images
@@ -61,7 +63,7 @@ export default function Login() {
                     </div>
                     <form onSubmit={handleEmailLogin}>
                         <div className="mb-4">
-                            <label className="block text-gray-700">Username or Email</label>
+                            <label className="block text-gray-700">Email</label>
                             <input
                                 type="email"
                                 value={email}
@@ -101,7 +103,6 @@ export default function Login() {
                         onClick={handleGoogleLogin}
                         className="w-full px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors flex items-center justify-center"
                     >
-                        {/* <Image src="/google-icon.svg" alt="Google" width={20} height={20} /> */}
                         <FaGoogle size={20} />
                         <span className="ml-2">Sign in with Google</span>
                     </button>

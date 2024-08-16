@@ -3,8 +3,8 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Loader from '@/components/loader';
-
-export default function RecipeDetail({ params }) {
+import WithAuth from '../../../components/auth';
+const RecipeDetail =({ params }) =>{
   const { id } = params;
   const [recipe, setRecipe] = useState(null);
 
@@ -64,3 +64,5 @@ export default function RecipeDetail({ params }) {
     </main>
   );
 }
+
+export default WithAuth(RecipeDetail)
