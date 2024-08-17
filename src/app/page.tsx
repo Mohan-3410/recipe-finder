@@ -1,22 +1,14 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import { useRouter,useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect } from "react";
+
 const Recipe = () => {
   const router = useRouter();
-  const handleSearchClick = () => {
-    const token = localStorage.getItem('key_access_token');
-    
-    if (token) {
-      router.push("/search");
-    } else {
-      alert('Please log in to search for recipes.');
-    }
-  };
   const searchParams = useSearchParams();
   const accessToken = searchParams.get('accessToken');
 
-
+  // Handle the accessToken logic
   useEffect(() => {
     if (accessToken) {
       console.log("Access Token:", accessToken);
@@ -24,6 +16,15 @@ const Recipe = () => {
     }
   }, [accessToken]);
 
+  const handleSearchClick = () => {
+    const token = localStorage.getItem('key_access_token');
+
+    if (token) {
+      router.push("/search");
+    } else {
+      alert('Please log in to search for recipes.');
+    }
+  };
 
   return (
     <div
