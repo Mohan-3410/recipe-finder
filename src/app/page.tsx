@@ -1,28 +1,36 @@
 "use client";
+import { Suspense } from "react";
 import { Button } from "@/components/ui/button";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect } from "react";
+import Loader from "@/components/loader";
 
-const Recipe = () => {
-  const router = useRouter();
+function HandleAccessToken() {
   const searchParams = useSearchParams();
-  const accessToken = searchParams.get('accessToken');
+  const accessToken = searchParams.get("accessToken");
+  const router = useRouter();
 
-  // Handle the accessToken logic
   useEffect(() => {
     if (accessToken) {
       console.log("Access Token:", accessToken);
-      localStorage.setItem('key_access_token', accessToken);
+      localStorage.setItem("key_access_token", accessToken);
+      
     }
   }, [accessToken]);
 
+  return null; 
+}
+
+const Recipe = () => {
+  const router = useRouter();
+
   const handleSearchClick = () => {
-    const token = localStorage.getItem('key_access_token');
+    const token = localStorage.getItem("key_access_token");
 
     if (token) {
       router.push("/search");
     } else {
-      alert('Please log in to search for recipes.');
+      alert("Please log in to search for recipes.");
     }
   };
 
@@ -31,6 +39,9 @@ const Recipe = () => {
       className="relative h-screen bg-cover bg-no-repeat overflow-hidden"
       style={{ backgroundImage: "url('/recipe.jpg')" }}
     >
+      <Suspense fallback={<Loader />}>
+        <HandleAccessToken />
+      </Suspense>
       <div className="flex flex-col gap-4 md:gap-3 items-center justify-center h-full bg-black bg-opacity-70 text-center px-4 md:px-0">
         <h2 className="text-5xl md:text-6xl text-white mb-2 font-bold font-pacifico">
           Find Your <span className="text-yellow-400">Favorite</span> Recipes
